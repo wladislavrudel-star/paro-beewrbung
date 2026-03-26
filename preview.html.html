@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paro-Familie Bewerbung</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    background: #0f0f0f;
+    color: #e8e8e8;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    z-index: -2;
+}
+
+/* Animated Stars/Meteors Container */
+#stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgb(50, 60, 37);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(50, 60, 37, 0.8), 0 0 20px rgba(50, 60, 37, 0.4);
+    animation: meteor-fall linear forwards;
+}
+
+@keyframes meteor-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh) translateX(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(100px);
+    }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgb(50, 60, 37), transparent);
+    box-shadow: 0 0 10px rgba(50, 60, 37, 0.6), 0 0 20px rgba(50, 60, 37, 0.3);
+    animation: shooting-star-fall linear forwards;
+}
+
+@keyframes shooting-star-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(-10vh) translateX(0) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(110vh) translateX(150px) rotate(45deg);
+    }
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(50, 60, 37, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(50, 60, 37, 0.4);
+    animation: float-particle 8s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-30px) translateX(20px);
+        opacity: 0.8;
+    }
+}
+
+/* Logo Watermark */
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background-image: url('https://cdn.discordapp.com/icons/1335710790594068653/a_0f1a2b3c4d5e6f7g8h9i.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.04;
+    z-index: -1;
+    pointer-events: none;
+}
+
+html {
+    z-index: 1;
+}
+
+/* Header - Apple Style */
+.header {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 50px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-image: url('https://cdn.discordapp.com/icons/1335710790594068653/a_0f1a2b3c4d5e6f7g8h9i.png');
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 1;
+}
+
+.header h1 {
+    color: rgb(50, 60, 37);
+    font-size: 3.2em;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.header p {
+    color: #999;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+}
+
+h2 {
+    color: rgb(50, 60, 37);
+    font-size: 1.4em;
+    margin: 35px 0 20px 0;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+button {
+    background: rgb(50, 60, 37);
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 0.95em;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 8px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(50, 60, 37, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(50, 60, 37, 0.35);
+    background: rgb(60, 70, 47);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button span {
+    position: relative;
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form - Apple Style */
+form {
+    background: rgba(25, 25, 25, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(100, 100, 100, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 350px;
+    height: 350px;
+    background-image: url('https://cdn.discordapp.com/icons/1335710790594068653/a_0f1a2b3c4d5e6f7g8h9i.png');
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+form > * {
+    position: relative;
+    z-index: 2;
+}
+
+label {
+    display: block;
+    margin-top: 24px;
+    font-weight: 600;
+    color: #ddd;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="url"], 
+input[type="file"], 
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    background-color: rgba(50, 50, 50, 0.5);
+    color: #e8e8e8;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+input[type="url"]:focus, 
+input[type="file"]:focus, 
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: rgb(50, 60, 37);
+    background-color: rgba(60, 60, 60, 0.7);
+    box-shadow: 0 0 0 3px rgba(50, 60, 37, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+    color: #666;
+}
+
+.personal-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.personal-field {
+    flex: 1;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    background-color: rgba(50, 50, 50, 0.6);
+    font-family: inherit;
+}
+
+/* Table - Apple Style */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: rgba(25, 25, 25, 0.4);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    margin: 40px 0;
+    border: 1px solid rgba(100, 100, 100, 0.15);
+}
+
+th, td {
+    border: none;
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+th {
+    background: rgb(50, 60, 37);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    letter-spacing: 1px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: rgba(50, 60, 37, 0.08);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(100, 100, 100, 0.05);
+}
+
+a {
+    color: rgb(50, 60, 37);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: rgb(60, 70, 47);
+}
+
+/* Confirmation Box - Apple Style */
+.confirmation-box {
+    background: rgba(25, 25, 25, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 80px 60px;
+    border-radius: 24px;
+    max-width: 700px;
+    margin: 80px auto;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    animation: slideIn 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirmation-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 450px;
+    height: 450px;
+    background-image: url('https://cdn.discordapp.com/icons/1335710790594068653/a_0f1a2b3c4d5e6f7g8h9i.png');
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.12;
+    animation: floatBg 25s linear infinite;
+}
+
+@keyframes floatBg {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(360deg); }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.checkmark {
+    font-size: 5em;
+    color: rgb(50, 60, 37);
+    margin-bottom: 25px;
+    animation: pulse 0.8s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.1); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.confirmation-box h1 {
+    font-size: 3.2em;
+    margin: 20px 0 16px 0;
+    color: #fff;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 2;
+    font-weight: 700;
+}
+
+.confirmation-box p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin: 16px 0;
+    color: #bbb;
+    position: relative;
+    z-index: 2;
+    font-weight: 400;
+}
+
+.confirmation-signature {
+    margin-top: 50px;
+    color: rgb(50, 60, 37);
+    font-size: 1.1em;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+/* STARTSEITE - Schöner Design */
+.start-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.start-intro {
+    margin-bottom: 80px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.start-intro h2 {
+    font-size: 2.8em;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+
+.start-intro p {
+    font-size: 1.2em;
+    color: #bbb;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    line-height: 1.7;
+}
+
+.start-intro .subtitle {
+    color: rgb(50, 60, 37);
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.start-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.start-button-card {
+    background: rgba(25, 25, 25, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(100, 100, 100, 0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.start-button-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(50, 60, 37, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.start-button-card:hover::before {
+    left: 100%;
+}
+
+.start-button-card:hover {
+    background: rgba(35, 35, 35, 0.8);
+    border-color: rgba(50, 60, 37, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(50, 60, 37, 0.2);
+}
+
+.button-icon {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    display: block;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.start-button-card:nth-child(1) .button-icon {
+    animation-delay: 0s;
+}
+
+.start-button-card:nth-child(2) .button-icon {
+    animation-delay: 0.2s;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.button-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: rgb(50, 60, 37);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.button-description {
+    font-size: 0.95em;
+    color: #999;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.start-button-link {
+    display: inline-block;
+    background: linear-gradient(135deg, rgb(50, 60, 37) 0%, rgb(60, 70, 47) 100%);
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(50, 60, 37, 0.3);
+}
+
+.start-button-link:hover {
+    box-shadow: 0 8px 25px rgba(50, 60, 37, 0.5);
+    transform: translateY(-2px);
+}
+
+.start-button-link:active {
+    transform: translateY(0);
+}
+
+/* Bewerbungen Container */
+.bewerbungen-container {
+    background: rgba(25, 25, 25, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(100, 100, 100, 0.15);
+    max-width: 1500px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.bewerbungen-container::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background-image: url('https://cdn.discordapp.com/icons/1335710790594068653/a_0f1a2b3c4d5e6f7g8h9i.png');
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 1;
+}
+
+.bewerbungen-container h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.no-bewerbungen {
+    text-align: center;
+    color: #888;
+    padding: 80px 20px;
+    font-size: 1.2em;
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.4em;
+    }
+    
+    form {
+        padding: 40px;
+    }
+    
+    .personal-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .confirmation-box {
+        padding: 50px 30px;
+    }
+    
+    .start-intro h2 {
+        font-size: 2em;
+    }
+    
+    .start-buttons {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .start-button-card {
+        padding: 40px 30px;
+    }
+    
+    table {
+        font-size: 0.85em;
+    }
+    
+    th, td {
+        padding: 12px;
+    }
+}
+
+.helper-text {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 8px;
+    font-weight: 400;
+}
+</style>
+</head>
+<body>
+
+<!-- Sound Effects (Web Audio API) -->
+<script>
+// Sound Effect Generator
+const SoundEffects = {
+    hoverSound: null,
+    clickSound: null,
+    successSound: null,
+    
+    init() {
+        // Initialize audio context
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        this.hoverSound = () => {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            osc.frequency.value = 600;
+            gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.1);
+        };
+        
+        this.clickSound = () => {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            osc.frequency.setValueAtTime(800, audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+            
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.15);
+        };
+        
+        this.successSound = () => {
+            const now = audioContext.currentTime;
+            
+            // First beep
+            const osc1 = audioContext.createOscillator();
+            const gain1 = audioContext.createGain();
+            osc1.connect(gain1);
+            gain1.connect(audioContext.destination);
+            osc1.frequency.value = 700;
+            gain1.gain.setValueAtTime(0.1, now);
+            gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+            osc1.start(now);
+            osc1.stop(now + 0.15);
+            
+            // Second beep
+            const osc2 = audioContext.createOscillator();
+            const gain2 = audioContext.createGain();
+            osc2.connect(gain2);
+            gain2.connect(audioContext.destination);
+            osc2.frequency.value = 900;
+            gain2.gain.setValueAtTime(0.1, now + 0.2);
+            gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+            osc2.start(now + 0.2);
+            osc2.stop(now + 0.35);
+        };
+    }
+};
+
+// Initialize on first interaction
+document.addEventListener('click', () => {
+    if (!SoundEffects.hoverSound) {
+        SoundEffects.init();
+    }
+}, { once: true });
+
+document.addEventListener('mouseover', () => {
+    if (!SoundEffects.hoverSound) {
+        SoundEffects.init();
+    }
+}, { once: true });
+</script>
+
+<!-- Animated Background Container -->
+<div id="stars-container"></div>
+
+<!-- Header -->
+<div class="header">
+    <h1>🔱 PARO-FAMILIE 🔱</h1>
+    <p>Offizielles Bewerbungsformular</p>
+</div>
+
+<!-- Startseite - Neu Designed -->
+<div id="startPage">
+    <div class="container">
+        <div class="start-page-container">
+            <div class="start-intro">
+                <h2>Willkommen zur Paro-Familie</h2>
+                <p>Interessierst du dich für die beste Fraktion?</p>
+                <p class="subtitle">Wähle eine Option um fortzufahren</p>
+            </div>
+            
+            <div class="start-buttons">
+                <div class="start-button-card" onclick="showForm(); playClickSound();" onmouseover="playHoverSound()">
+                    <span class="button-icon">📝</span>
+                    <div class="button-title">Bewerbung</div>
+                    <div class="button-description">Werde Teil der Paro-Familie und stelle deine Bewerbung ein.</div>
+                    <a href="javascript:void(0)" class="start-button-link">Jetzt Bewerben</a>
+                </div>
+                
+                <div class="start-button-card" onclick="showLogin(); playClickSound();" onmouseover="playHoverSound()">
+                    <span class="button-icon">🔍</span>
+                    <div class="button-title">Bewerbungen</div>
+                    <div class="button-description">Schau dir alle eingegangenen Bewerbungen an.</div>
+                    <a href="javascript:void(0)" class="start-button-link">Anschauen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bewerbungsformular -->
+<div id="bewerbungFormContainer" class="hidden">
+    <div class="container">
+        <form id="bewerbungForm">
+            <h2>📋 Persönliche Daten</h2>
+            <div class="personal-row">
+                <div class="personal-field">
+                    <label for="vorname">Vorname</label>
+                    <input type="text" id="vorname" placeholder="Max">
+                </div>
+                <div class="personal-field">
+                    <label for="nachname">Nachname</label>
+                    <input type="text" id="nachname" placeholder="Mustermann">
+                </div>
+                <div class="personal-field">
+                    <label for="discord">Discord</label>
+                    <input type="text" id="discord" placeholder="Max#1234">
+                </div>
+            </div>
+            <label for="alter">Alter (OOC)</label>
+            <input type="number" id="alter" placeholder="21" min="1" max="120">
+
+            <h2>🎮 Spielerische Angaben</h2>
+            <label for="server">Gespielte Server</label>
+            <input type="text" id="server" placeholder="OC Server 1">
+
+            <label for="fraktionen">Vorherige Fraktionen</label>
+            <textarea id="fraktionen" placeholder="Frak A, Frak B..."></textarea>
+
+            <label for="spielzeit">Spielzeit auf Orange City</label>
+            <input type="text" id="spielzeit" placeholder="50h">
+
+            <h2>🎥 Video Clip (Optional)</h2>
+            <label for="videoLink">Video-Link</label>
+            <input type="url" id="videoLink" placeholder="https://youtube.com/...">
+
+            <label for="videoFile">Video-Datei hochladen</label>
+            <input type="file" id="videoFile" accept="video/*">
+            <p class="helper-text">Beide Felder optional</p>
+
+            <h2>💪 Selbsteinschätzung</h2>
+            <label for="staerken">3 Stärken</label>
+            <textarea id="staerken" placeholder="Teamplayer, kreativ, freundlich..."></textarea>
+
+            <label for="schwaechen">3 Schwächen</label>
+            <textarea id="schwaechen" placeholder="Ungeduldig, skeptisch, schüchtern..."></textarea>
+
+            <h2>❓ Motivation</h2>
+            <label for="motivation">Wieso zur Paro-Familie?</label>
+            <textarea id="motivation" placeholder="Erzähl uns warum..."></textarea>
+
+            <h2>⏰ IC-Aktivität</h2>
+            <label for="icAktivitaet">IC-Aktivität</label>
+            <textarea id="icAktivitaet" placeholder="Regelmäßig online..."></textarea>
+
+            <button type="button" onclick="submitBewerbung(); playSuccessSound();" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="width: 100%; margin-top: 40px; padding: 16px;"><span>✓ Bewerbung absenden</span></button>
+            <button type="button" onclick="backToStart()" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="width: 100%; margin-top: 12px; background: rgba(100, 100, 100, 0.4);"><span>← Zurück</span></button>
+        </form>
+    </div>
+</div>
+
+<!-- Bestätigung -->
+<div id="confirmationPage" class="hidden">
+    <div class="container">
+        <div class="confirmation-box">
+            <div class="checkmark">✓</div>
+            <h1>Vielen Dank!</h1>
+            <p>Deine Bewerbung wurde erfolgreich eingereicht.</p>
+            <p>Wir freuen uns über dein Interesse an der Paro-Familie!</p>
+            <p>Unser Team wird sich in Kürze bei dir melden.</p>
+            <div class="confirmation-signature">
+                — Paro Leaderschaft
+            </div>
+            <button onclick="backToStart()" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="margin-top: 50px;"><span>← Zur Startseite</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- Login -->
+<div id="loginContainer" class="hidden">
+    <div class="container">
+        <form id="loginForm" style="max-width: 500px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 40px;">🔐 Admin Login</h2>
+            <label for="passwort">Passwort</label>
+            <input type="password" id="passwort" placeholder="Passwort eingeben">
+            <button type="button" onclick="checkLogin()" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="width: 100%; margin-top: 40px;"><span>Anmelden</span></button>
+            <button type="button" onclick="backToStart()" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="width: 100%; margin-top: 12px; background: rgba(100, 100, 100, 0.4);"><span>← Zurück</span></button>
+        </form>
+    </div>
+</div>
+
+<!-- Bewerbungsübersicht -->
+<div id="bewerbungenContainer" class="hidden">
+    <div class="container">
+        <div class="bewerbungen-container">
+            <h2>📊 Alle Bewerbungen</h2>
+            <div id="bewerbungenTable"></div>
+        </div>
+        <button onclick="backToStart()" onmouseover="playHoverSound()" onmousedown="playClickSound()" style="margin: 50px auto; display: block;"><span>← Zurück</span></button>
+    </div>
+</div>
+
+<script>
+// Sound Effect Functions
+function playHoverSound() {
+    if (SoundEffects.hoverSound) {
+        SoundEffects.hoverSound();
+    }
+}
+
+function playClickSound() {
+    if (SoundEffects.clickSound) {
+        SoundEffects.clickSound();
+    }
+}
+
+function playSuccessSound() {
+    if (SoundEffects.successSound) {
+        SoundEffects.successSound();
+    }
+}
+
+// Meteor/Star Animation System
+function createMeteor() {
+    const container = document.getElementById('stars-container');
+    const meteor = document.createElement('div');
+    
+    const randomType = Math.random();
+    
+    if (randomType < 0.4) {
+        // Shooting Star
+        meteor.className = 'shooting-star';
+        const duration = Math.random() * 2000 + 1500; // 1.5-3.5s
+        meteor.style.left = Math.random() * 100 + '%';
+        meteor.style.top = Math.random() * 50 + '%';
+        meteor.style.animationDuration = duration + 'ms';
+    } else if (randomType < 0.8) {
+        // Regular Meteor
+        meteor.className = 'meteor';
+        const duration = Math.random() * 3000 + 2000; // 2-5s
+        meteor.style.left = Math.random() * 100 + '%';
+        meteor.style.top = Math.random() * 100 - 50 + '%';
+        meteor.style.animationDuration = duration + 'ms';
+    } else {
+        // Floating Particle
+        meteor.className = 'particle';
+        const duration = Math.random() * 8000 + 6000;
+        meteor.style.left = Math.random() * 100 + '%';
+        meteor.style.top = Math.random() * 100 + '%';
+        meteor.style.animationDuration = duration + 'ms';
+        meteor.style.animationDelay = Math.random() * 2000 + 'ms';
+    }
+    
+    container.appendChild(meteor);
+    
+    setTimeout(() => {
+        meteor.remove();
+    }, 5000);
+}
+
+// Create meteors continuously
+setInterval(() => {
+    createMeteor();
+}, 800);
+
+// Create initial meteors
+for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+        createMeteor();
+    }, i * 300);
+}
+
+// Form Functions
+function loadBewerbungen() {
+    return JSON.parse(localStorage.getItem('bewerbungen') || '[]');
+}
+
+function saveBewerbungen(data) {
+    localStorage.setItem('bewerbungen', JSON.stringify(data));
+}
+
+function showForm() {
+    document.getElementById('startPage').classList.add('hidden');
+    document.getElementById('bewerbungFormContainer').classList.remove('hidden');
+}
+
+function showLogin() {
+    document.getElementById('startPage').classList.add('hidden');
+    document.getElementById('loginContainer').classList.remove('hidden');
+}
+
+function showConfirmation() {
+    document.getElementById('bewerbungFormContainer').classList.add('hidden');
+    document.getElementById('confirmationPage').classList.remove('hidden');
+}
+
+function backToStart() {
+    ['bewerbungFormContainer', 'loginContainer', 'bewerbungenContainer', 'confirmationPage'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+    });
+    document.getElementById('startPage').classList.remove('hidden');
+    document.getElementById('bewerbungForm').reset();
+    document.getElementById('passwort').value = '';
+}
+
+function submitBewerbung() {
+    const bewerbung = {
+        vorname: document.getElementById('vorname').value,
+        nachname: document.getElementById('nachname').value,
+        discord: document.getElementById('discord').value,
+        alter: document.getElementById('alter').value,
+        server: document.getElementById('server').value,
+        fraktionen: document.getElementById('fraktionen').value,
+        spielzeit: document.getElementById('spielzeit').value,
+        videoLink: document.getElementById('videoLink').value,
+        videoFile: document.getElementById('videoFile').value || '-',
+        staerken: document.getElementById('staerken').value,
+        schwaechen: document.getElementById('schwaechen').value,
+        motivation: document.getElementById('motivation').value,
+        icAktivitaet: document.getElementById('icAktivitaet').value,
+        datum: new Date().toLocaleString('de-DE')
+    };
+    
+    const bewerbungen = loadBewerbungen();
+    bewerbungen.push(bewerbung);
+    saveBewerbungen(bewerbungen);
+    showConfirmation();
+}
+
+function displayBewerbungen() {
+    const bewerbungen = loadBewerbungen();
+    const container = document.getElementById('bewerbungenTable');
+    
+    if (!bewerbungen.length) {
+        container.innerHTML = '<div class="no-bewerbungen">Noch keine Bewerbungen eingegangen</div>';
+        return;
+    }
+    
+    let html = '<table><tr><th>Vorname</th><th>Nachname</th><th>Alter</th><th>Discord</th><th>Server</th><th>Fraktionen</th><th>Spielzeit</th><th>Stärken</th><th>Schwächen</th><th>Motivation</th><th>IC-Aktivität</th><th>Datum</th></tr>';
+    
+    bewerbungen.forEach(b => {
+        html += `<tr><td>${b.vorname}</td><td>${b.nachname}</td><td>${b.alter}</td><td>${b.discord}</td><td>${b.server}</td><td>${b.fraktionen}</td><td>${b.spielzeit}</td><td>${b.staerken}</td><td>${b.schwaechen}</td><td>${b.motivation}</td><td>${b.icAktivitaet}</td><td>${b.datum}</td></tr>`;
+    });
+    
+    html += '</table>';
+    container.innerHTML = html;
+}
+
+function checkLogin() {
+    if (document.getElementById('passwort').value === "CarlosNikoErichP4L") {
+        document.getElementById('loginContainer').classList.add('hidden');
+        document.getElementById('bewerbungenContainer').classList.remove('hidden');
+        displayBewerbungen();
+    } else {
+        alert("Falsches Passwort!");
+    }
+}
+</script>
+
+</body>
+</html>
